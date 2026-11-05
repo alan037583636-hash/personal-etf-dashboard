@@ -11,7 +11,11 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, '.'),
       },
     },
-    // 這裡已經把會導致白畫面的 build.rollupOptions.external 刪除了
+    build: {
+      rollupOptions: {
+        external: ['react-is'], // 加回這行，叫 Vercel 放行
+      },
+    },
     server: {
       hmr: process.env.DISABLE_HMR !== 'true',
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
